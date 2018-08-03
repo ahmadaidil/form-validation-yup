@@ -9,9 +9,8 @@ const validateTypeSchema = (schema, values) => {
   return schema.validate(validateData, { abortEarly: false });
 }
 
-const typeToFormErrors = (err) => {
+const typeToFormErrors = err => {
   let errors = {};
-  console.log(err);
   err.inner.forEach(item => {
     if (!errors[item.path]) {
       errors[item.path] = item.message;
@@ -26,7 +25,7 @@ export const runValidation = (schema, values) => (
   new Promise(resolve => {
     validateTypeSchema(schema, values).then(() => {
       resolve({});
-    }, (err) => {
+    }, err => {
       resolve(typeToFormErrors(err));
     })
   })
