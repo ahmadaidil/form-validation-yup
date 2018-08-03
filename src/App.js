@@ -15,7 +15,7 @@ class App extends Component {
       error: {},
       touched: {},
       isValid: false
-    }
+    };
 
     this.schema = type.object().shape({
       email: type.string()
@@ -30,7 +30,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange({ target: {name, value} }) {
+  handleChange({ target: { name, value } }) {
     runValidation(this.schema, { ...this.state.field, [name]: value })
       .then(schemaErrors => {
         this.setState(prevState => ({
