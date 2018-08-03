@@ -1,16 +1,5 @@
-const validateTypeSchema = (schema, values) => {
-  let validateData = {};
-  for (let value in values) {
-    if (values.hasOwnProperty(value)) {
-      const key = String(value)
-      validateData[key] = values !== '' ? values[key] : undefined
-    }
-  };
-  return schema.validate(validateData, { abortEarly: false });
-}
-
 const typeToFormErrors = err => {
-  let errors = {};
+  const errors = {};
   err.inner.forEach(item => {
     if (!errors[item.path]) {
       errors[item.path] = item.message;
@@ -19,14 +8,14 @@ const typeToFormErrors = err => {
   return errors;
 };
 
-export const checkValid = error => Object.keys(error).length === 0;
+export const checkValidation = err => Object.keys(err).length === 0;
 
 export const runValidation = (schema, values) => (
   new Promise(resolve => {
-    validateTypeSchema(schema, values).then(() => {
+    schema.validate(values, { abortEarly: false }).then(() => {
       resolve({});
     }, err => {
       resolve(typeToFormErrors(err));
-    })
+    });
   })
 );

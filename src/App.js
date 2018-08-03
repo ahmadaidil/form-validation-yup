@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as type from 'yup';
-import { checkValid, runValidation } from './utils';
+import { checkValidation, runValidation } from './utils';
 import logo from './logo.svg';
 import './App.css';
 
@@ -18,26 +18,28 @@ class App extends Component {
     }
 
     this.schema = type.object().shape({
-      email: type.string().email('not email bro!').required('email required bro!'),
-      password: type.string().min(6, '6 bro!')
-    })
+      email: type.string()
+        .email('not email bro!')
+        .required('email required bro!'),
+      password: type.string()
+        .required('password required bro!')
+        .min(6, '6 bro!')
+    });
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange({ target: {name, value} }) {
-    this.setState(prevState => ({
-      field: { ...prevState.field, [name]: value },
-      touched: { ...prevState.touched, [name]: true },
-    }), () => {
-      runValidation(this.schema, this.state.field).then(schemaErrors => {
-        this.setState({
+    runValidation(this.schema, { ...this.state.field, [name]: value })
+      .then(schemaErrors => {
+        this.setState(prevState => ({
+          field: { ...prevState.field, [name]: value },
           error: schemaErrors,
-          isValid: checkValid(schemaErrors)
-        });
-      })
-    });
+          touched: { ...prevState.touched, [name]: true },
+          isValid: checkValidation(schemaErrors)
+        }));
+      });
   }
 
   handleSubmit(event) {
