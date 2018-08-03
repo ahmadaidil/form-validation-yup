@@ -1,0 +1,21 @@
+{
+  "name": "form-validation-yup",
+  "version": "0.1.0",
+  "private": false,
+  "author": {
+    "name": "Ahmad Aidil",
+    "github": "https://github.com/ahmadaidil"
+  },
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4",
+    "yup": "^0.26.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
