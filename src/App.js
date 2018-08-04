@@ -31,15 +31,17 @@ class App extends Component {
   }
 
   handleChange({ target: { name, value } }) {
-    runValidation(this.schema, { ...this.state.field, [name]: value })
+    this.setState(prevState => ({
+      field: { ...prevState.field, [name]: value }
+    }), () =>
+      runValidation(this.schema, { ...this.state.field, [name]: value })
       .then(schemaErrors => {
         this.setState(prevState => ({
-          field: { ...prevState.field, [name]: value },
           error: schemaErrors,
           touched: { ...prevState.touched, [name]: true },
           isValid: checkValidation(schemaErrors)
         }));
-      });
+      }));
   }
 
   handleSubmit(event) {
