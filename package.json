@@ -2,20 +2,33 @@
   "name": "form-validation-yup",
   "version": "0.1.0",
   "private": false,
+  "license": "ISC",
   "author": {
     "name": "Ahmad Aidil",
     "github": "https://github.com/ahmadaidil"
   },
   "dependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4",
-    "yup": "^0.26.0"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "^3.0.0",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
